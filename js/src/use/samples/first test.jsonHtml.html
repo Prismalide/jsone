@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<!-- Project: jsonHtml 24/5/2017 -->
+<html>
+<head>
+    <title>first test jsonHtml</title>
+	<meta name="description" content="first test" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="pml" />
+
+    <meta name="robots" content="noindex" />
+
+    <script src="../../jsonHtml.js" > </script>
+
+<style type="text/css">
+<!--
+	
+-->
+</style>
+</head>
+
+<body>
+
+<script type="text/javascript">
+<!--
+//*///
+function test1(){
+	return  [
+	{div:''},
+	[{div:''},
+	    "inner dans div",,
+	    [{b:''},[{i:''},[{u:''},"aprés br texte "]]]," suite après b.i.u "
+	],"suite aprés div",
+	{hr:''},
+	,
+	[{span:''},
+	    "test span",
+	    [{div:'style="..."'},
+	        "div dans span",
+	    ]
+	],
+	[{div:''},
+	    "suite dans div après span"
+	]]
+	}
+editTest(test1)	// => <div><div>inner dans div<br /><b><i><u>aprés br texte </u></i></b> suite après b.i.u </div>suite aprés div<hr><br />
+				//<span>test span<div style="...">div dans span</div></span><div>suite dans div après span</div></hr></div>
+//*///
+//*///
+function test2(){
+	return  [
+	{div:''},
+	[{div:''},
+	    "inner dans div",,
+	    [{b:''},[{span:'style="..."' },[{i:''},[{u:''},[{em:''},"aprés br texte "]]], " suite après b.span.u.e "
+	    ]]],
+	"suite aprés div",
+	[{hr:''}],
+	,
+	[{span:''},
+	    "test span",
+	    [{div:'style="..."' },
+	        "div dans span",
+	]],[{div:''},
+	    "suite dans div après span"
+	]]
+	}
+editTest(test2)	// => <div><div>inner dans div<br /><b><span style="..."><i><u><em>aprés br texte </em></u></i> suite après b.span.u.e </span></b></div>
+				//suite aprés div<hr></hr><br /><span>test span<div style="...">div dans span</div></span><div>suite dans div après span</div></div>
+//*////
+//*///test class id et autres
+function test3(){
+	return  [
+	{"div":''},
+	[{"div":{class1:{class2:''}}}],
+	[{"div":'',id:'monId'}],
+	[{"div":{class2:{class1:''}},id:'monId2'}]
+	]
+	}
+editTest(test3) // =>  <div><div class="class1 class2 " ></div><div id="monId" ></div><div id="monId2" class="class2 class1 " ></div></div>
+//*///
+function editTest(funcdata){
+	(document.body.appendChild(document.createElement('pre'))).innerText=funcdata.toString()
+	document.body.appendChild(document.createTextNode('CONVERT: '+jsonHtml(funcdata())))
+	document.body.appendChild(document.createElement('br'))
+	}
+
+-->
+</script>
+
+</body>
+</html>
